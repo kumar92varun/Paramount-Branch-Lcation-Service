@@ -4,7 +4,7 @@ var location_marker;
 
 $(document).ready(function(){
 	$(document).on('click', '#location-B', function(){
-		navigator.geolocation.getCurrentPosition(geoLocationSuccess, geoLocationError);
+		navigator.geolocation.getCurrentPosition(geoLocationSuccess, geoLocationError, {enableHighAccuracy:true});
 	});
 	$(document).on('click', '#add-marker-B', function(){
 		addCurrentLocationMarker();
@@ -12,19 +12,23 @@ $(document).ready(function(){
 });
 
 
-function geoLocationSuccess(position) {
-	map_lnglat = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+function geoLocationSuccess(position){
+	console.log(position);
+	//map_lnglat = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	renderMap();
 }
 function geoLocationError(error_object){
-	switch(error_object['code'])
-	{
-		case 1:
+	alert('Sorry, we could not find your location.');
+	/*
+		switch(error_object['code'])
 		{
-			alert('You denied permission to track your location');
-			break;
+			case 1:
+			{
+				alert('You denied permission to track your location');
+				break;
+			}
 		}
-	}
+	*/
 }
 
 
@@ -34,7 +38,7 @@ function geoLocationError(error_object){
 function renderMap(){
 	map = new google.maps.Map(document.getElementById('map'), {
 		center:map_lnglat,
-		zoom:14
+		zoom:16
 	});
 }
 function addCurrentLocationMarker(){
