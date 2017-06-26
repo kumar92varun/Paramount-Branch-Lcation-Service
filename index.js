@@ -1,3 +1,113 @@
+var map;
+var map_lnglat;
+var location_marker;
+
+$(document).ready(function(){
+	$(document).on('click', '#location-B', function(){
+		navigator.geolocation.getCurrentPosition(geoLocationSuccess, geoLocationError);
+	});
+	$(document).on('click', '#add-marker-B', function(){
+		addCurrentLocationMarker();
+	});
+});
+
+
+function geoLocationSuccess(position) {
+	map_lnglat = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	renderMap();
+}
+function geoLocationError(error_object){
+	switch(error_object['code'])
+	{
+		case 1:
+		{
+			alert('You denied permission to track your location');
+			break;
+		}
+	}
+}
+
+
+
+
+
+function renderMap(){
+	map = new google.maps.Map(document.getElementById('map'), {
+		center:map_lnglat,
+		zoom:14
+	});
+}
+function addCurrentLocationMarker(){
+	location_marker = new google.maps.Marker({
+		position:map_lnglat,
+		map:map
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
 //JaraScript Variable of type Array...
 var array_example = [];
 
@@ -7,7 +117,6 @@ array_example[2] = 'Kartik';
 array_example[3] = 'Varun';
 array_example[4] = 6.7;
 array_example[200] = 'popup';
-
 
 
 
@@ -46,3 +155,5 @@ var geo_options = {
 
 
 //JSON => JavaScript Object Notation
+
+*/
