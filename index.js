@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 function geoLocationSuccess(position){
 	console.log(position);
-	//map_lnglat = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	map_lnglat = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	renderMap();
 }
 function geoLocationError(error_object){
